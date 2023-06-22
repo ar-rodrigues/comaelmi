@@ -1,4 +1,4 @@
-## MAIN VSCODE
+## MAIN
 ## Getting Started
 
 Hit the run button to start the development server.
