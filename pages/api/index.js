@@ -1,6 +1,6 @@
 import { table, getMinifiedRecords, minifyRecord } from "../../utils/airtable";
 
-export default async (_req, res) => {
+export default async function handler(_req, res) => {
   try {
     const records = await table.select({}).all();
     const minifiedRecords = await getMinifiedRecords(records);

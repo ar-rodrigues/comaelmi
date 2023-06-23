@@ -9,39 +9,40 @@ const input="input input-bordered input-sm mb-2 bg-slate-200 text-black font-med
 
 
 export default function ProductItem(props) {
-  const {product, cartList ,setCartList} = props
-  const {_id:id, description, label, type, presentation, price, image} = product
-  const listItem = cartList?.find(item=>item.item._id === id) || 0
-  
+  const { product, cartList, setCartList } = props;
+  const { _id: id, description, label, type, presentation, price, image } = product;
+  const listItem = cartList?.find((item) => item.item._id === id) || 0;
 
-  const [showButton, setShowButton] = useState(false)
+  const [showButton, setShowButton] = useState(false);
   const showButtonRef = useRef(null);
-  const [hidden, setHidden] = useState("")
+  const [hidden, setHidden] = useState("");
 
   const handleQuantity = (listItem, e) => {
-  setCartList((prevState) =>
-    prevState.map((item) =>
-      item.item._id === listItem._id
-        ? {
-            ...item,
-            quantity:
-              e.target.value === "-"
-                ? Math.max(item.quantity - 1, 0)
-                : e.target.value === "+"
-                ? item.quantity + 1
-                : Number(e.target.value),
-          }
-        : item
-    ).filter((item) => item.quantity > 0) 
-  );
-};
+    setCartList((prevState) =>
+      prevState
+        .map((item) =>
+          item.item._id === listItem._id
+            ? {
+                ...item,
+                quantity:
+                  e.target.value === "-"
+                    ? Math.max(item.quantity - 1, 0)
+                    : e.target.value === "+"
+                    ? item.quantity + 1
+                    : Number(e.target.value),
+              }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
 
   const handleCart = (product, e) => {
     setCartList((prevState) => [
-        ...prevState,
-        { item: product, quantity: 1 }
-      ]);
-    setHidden("hidden")
+      ...prevState,
+      { item: product, quantity: 1 }
+    ]);
+    setHidden("hidden");
   };
 
   useEffect(() => {
@@ -50,32 +51,33 @@ export default function ProductItem(props) {
     }
   }, [listItem.quantity]);
 
-  
- useEffect(() => {
-  const handleMouseOver = () => {
-    setShowButton(true);
-  };
+  useEffect(() => {
+    const handleMouseOver = () => {
+      setShowButton(true);
+    };
 
-  const handleMouseOut = () => {
-    setShowButton(false);
-  };
-
-  const handleClickOutside = (event) => {
-    if (showButtonRef.current && !showButtonRef.current.contains(event.target)) {
+    const handleMouseOut = () => {
       setShowButton(false);
-    }
-  };
+    };
 
-  showButtonRef.current?.addEventListener('mouseover', handleMouseOver);
-  showButtonRef.current?.addEventListener('mouseout', handleMouseOut);
-  document.addEventListener('mousedown', handleClickOutside);
+    const handleClickOutside = (event) => {
+      if (showButtonRef.current && !showButtonRef.current.contains(event.target)) {
+        setShowButton(false);
+      }
+    };
 
-  return () => {
-    showButtonRef.current?.removeEventListener('mouseover', handleMouseOver);
-    showButtonRef.current?.removeEventListener('mouseout', handleMouseOut);
-    document.removeEventListener('mousedown', handleClickOutside);
-  };
-}, []);
+    const showButtonRefCurrent = showButtonRef.current;
+
+    showButtonRefCurrent?.addEventListener('mouseover', handleMouseOver);
+    showButtonRefCurrent?.addEventListener('mouseout', handleMouseOut);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      showButtonRefCurrent?.removeEventListener('mouseover', handleMouseOver);
+      showButtonRefCurrent?.removeEventListener('mouseout', handleMouseOut);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   
   
   return (
