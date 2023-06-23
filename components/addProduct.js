@@ -60,6 +60,7 @@ export default function AddProducts({showProducts,setShowProducts}) {
 
   return (
     <div className="flex place-content-center relative bg-white px-4 pt-5 pb-4 shadow-xl ring-1 ring-gray-900/5">
+      
       <form onSubmit={handleSubmit(onSubmit)} className="form-control w-full max-w-xs mr-5 ml-5">
         <label className="label" htmlFor="description">Descripción</label>
         <input
@@ -114,7 +115,6 @@ export default function AddProducts({showProducts,setShowProducts}) {
           type="numeric"
           id="price"
           name="price"
-          placeholder="Please enter a number"
           placeholder="1,230.90"
           prefix="MX$"
           decimalSeparator="." 
