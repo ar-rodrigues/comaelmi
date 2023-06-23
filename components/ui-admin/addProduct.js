@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 import { v4 as uuidv4 } from 'uuid';
 
-import Alert from './alert'
+import Alert from '../alert'
 
 export default function AddProducts({showProducts,setShowProducts}) {
   const {

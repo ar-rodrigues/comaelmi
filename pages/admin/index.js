@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-
+import useSWR from 'swr';
 
 import Layout from '../../components/layout';
-import AddProduct from '../../components/addProduct';
-import Product from '../../components/product';
+import AddProduct from '../../components/ui-admin/addProduct';
 import ListOfProducts from '../../components/listOfProducts';
 import deleteProduct from '../../utils/deleteProduct'
 
-
-
-import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 

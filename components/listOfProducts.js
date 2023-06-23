@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/router'
 
-import Product from './product.js';
+import Product from './ui-admin/product.js';
 import ProductItem from './ui-user/productItem';
 
 

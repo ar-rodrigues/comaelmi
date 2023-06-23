@@ -1,25 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
-
-import Layout from '../../components/layoutUser';
-import AddProduct from '../../components/addProduct';
-import Product from '../../components/product';
-import ListOfProducts from '../../components/listOfProducts';
-import ShopCart from '../../components/ui-user/shopCart'
 import { v4 as uuidv4 } from 'uuid';
+import useSWR from 'swr';
+
 import deleteProduct from '../../utils/deleteProduct'
 
+import Layout from '../../components/layoutUser';
+import ListOfProducts from '../../components/listOfProducts';
+import ShopCart from '../../components/ui-user/shopCart'
 
 
-import useSWR, {mutate} from 'swr';
+
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Index() {
   const { query: { id:hospital } } = useRouter();
   const id = uuidv4();
+
   const { data: products, error:fetchError } = useSWR('/api/products', fetcher);
-  const [showAdd, setShowAdd] = useState(false)
   const [error, setError] = useState(false)
   const [cartList, setCartList] = useState([])
   const [showCartList, setShowCartList] = useState(false);

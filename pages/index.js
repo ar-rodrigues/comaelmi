@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { v4 as uuidv4 } from 'uuid';
+import useSWR from 'swr';
 
 import Layout from '../components/layout';
-import AddProduct from '../components/addProduct';
-import Product from '../components/product';
-import ListOfProducts from '../components/listOfProducts';
-import ShopCart from '../components/ui-user/shopCart'
-import { v4 as uuidv4 } from 'uuid';
-import deleteProduct from '../utils/deleteProduct'
 
 
 
-import useSWR, {mutate} from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 

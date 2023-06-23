@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import Alert from "./alert";
-import saveProduct from '../utils/saveProduct';
+
+import Alert from "../alert";
+import saveProduct from '../../utils/saveProduct';
 import EditProductForm from './editProductForm';
 
 const noImage = "/noimage.jpg";
