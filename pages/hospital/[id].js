@@ -46,7 +46,7 @@ export default function Index() {
 
   return (
     <Layout 
-      className="place-content-center text-center "
+      className=""
       userName={hospital?.charAt(0)?.toUpperCase() + hospital?.slice(1)} >
         
         <div>

@@ -30,14 +30,14 @@ export default function Index() {
 
   return (
     <Layout userName={"Admin"} showProducts={showProducts} setShowProducts={setShowProducts} className="">
-      <main className="container">
+      <main className="items-center content-center">
         
         <div className="flex justify-center items-center m-5">
           <button className="btn btn-wide btn-xs sm:btn-sm md:btn-md lg:btn-lg" onClick={()=>setShowProducts(!showProducts)}>{ showProducts ? "Agregar Producto" : "Lista de productos" }
           </button>
         </div>
         
-        <div className="flex place-content-center">
+        <div className="">
           {
           showProducts 
           ?
