@@ -15,25 +15,26 @@ import ShopCart from '../../components/ui-user/shopCart'
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Index() {
-  const { query: { id:hospital } } = useRouter();
+  const { query: { id:client } } = useRouter();
   const id = uuidv4();
 
   const { data: products, error:fetchError } = useSWR('/api/products', fetcher);
   const [error, setError] = useState(false)
   const [cartList, setCartList] = useState([])
   const [showCartList, setShowCartList] = useState(false);
-  const [orderData, setOrderData] = useState({id: id, name: hospital, date: "", observation:"" , cartList: cartList}) 
+  const [orderData, setOrderData] = useState({id: id, name: client, date: "", observation:"" , cartList: cartList}) 
+  const [showOrders, setShowOrders] = useState(false)
 
 
   useEffect(() => {
-    if (hospital) {
+    if (client) {
       setOrderData((prevOrderData) => ({
         ...prevOrderData,
-        name: hospital,
+        name: client,
         cartList: cartList,
       }));
     }
-  }, [hospital, cartList]);
+  }, [client, cartList]);
 
   if (fetchError) {
     return <div>Error loading products</div>;
@@ -46,20 +47,32 @@ export default function Index() {
 
   return (
     <Layout 
-      className=""
-      userName={hospital?.charAt(0)?.toUpperCase() + hospital?.slice(1)} >
-        
-        <div>
+      userName={client?.charAt(0)?.toUpperCase() + client?.slice(1)} >
+      <div className="flex flex-col items-center content-center" >
+        <button 
+          className="btn m-3"
+          onClick={()=>setShowOrders(!showOrders)}
+          >Ordenes {client}
+          </button>
         {
-          !showCartList &&
-          <ListOfProducts products={products} error={error} setError={setError} deleteProduct={deleteProduct} cartList={cartList} setCartList={setCartList} /> 
-        }
-        </div>
-
+         showOrders ?
+        <div>Show Orders</div> :
+          
         <div>
+          <div >
+            {
+            !showCartList &&
+            <ListOfProducts products={products} error={error} setError={setError} deleteProduct={deleteProduct} cartList={cartList} setCartList={setCartList} /> 
+          }
+          </div>
+  
+          <div>
           <ShopCart cartList={cartList} setCartList={setCartList} showCartList={showCartList} setShowCartList={setShowCartList} setOrderData={setOrderData} orderData={orderData}  />
         </div>
+        </div>
+        }
         
+      </div>
     </Layout>
   );
 }

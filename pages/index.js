@@ -17,7 +17,7 @@ export default function Index() {
   const [error, setError] = useState(false)
   const [cartList, setCartList] = useState([])
   const [showCartList, setShowCartList] = useState(false);
-  const [orderData, setOrderData] = useState({id: id, name: "Hospital", date: "", observation:"" , cartList: cartList})
+  const [orderData, setOrderData] = useState({id: id, name: "Cliente", date: "", observation:"" , cartList: cartList})
 
 
   
@@ -51,8 +51,8 @@ export default function Index() {
         
 
         <button className="btn btn-wide">
-          <Link href="/hospital/sur">
-            Interface Hospital
+          <Link href="/cliente/sur">
+            Interface Ordenes
           </Link>
         </button >
         
