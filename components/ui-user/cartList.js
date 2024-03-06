@@ -2,7 +2,6 @@ import {useState} from 'react'
 import SvgX from "../svg-icons/svgX"
 import SvgCart from "../svg-icons/svgCart"
 
-const noImage = './noImage.jpg'
 import Order from "./order"
 
 export default function CartList({setShowCartList, showCartList, cartList, setCartList, handleQuantity, orderData, setOrderData }){
@@ -52,19 +51,7 @@ export default function CartList({setShowCartList, showCartList, cartList, setCa
 
           return (
             <div key={id} className={`grid grid-cols-6 place-content-center content-center items-center justify-center space-x-4 pb-8`}>
-              
-              <div className="flex place-content-center col-span-1">
-                <img
-                  className="w-10 h-10 rounded-full shrink"
-                  width={60}
-                  height={60}
-                  alt={`image of ${description}`}
-                  src={image ? image : noImage}
-                  quality={50}
-                  loading="lazy"
-                  />
-              </div>
-              
+        
               <div className="flex-1 min-w-2 col-span-3">
                 
                 <h1 className="text-sm mb-3 font-medium text-gray-900 dark:text-black sm:break-all"> {description} </h1>

@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-
+import useSWR from 'swr';
 
 import Layout from '../../components/layout';
-import AddProduct from '../../components/addProduct';
-import Product from '../../components/product';
+import AddProduct from '../../components/ui-admin/addProduct';
 import ListOfProducts from '../../components/listOfProducts';
 import deleteProduct from '../../utils/deleteProduct'
 
-
-
-import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -34,14 +30,14 @@ export default function Index() {
 
   return (
     <Layout userName={"Admin"} showProducts={showProducts} setShowProducts={setShowProducts} className="">
-      <main className="container">
+      <main className="items-center content-center">
         
         <div className="flex justify-center items-center m-5">
           <button className="btn btn-wide btn-xs sm:btn-sm md:btn-md lg:btn-lg" onClick={()=>setShowProducts(!showProducts)}>{ showProducts ? "Agregar Producto" : "Lista de productos" }
           </button>
         </div>
         
-        <div className="flex place-content-center">
+        <div className="">
           {
           showProducts 
           ?

@@ -4,7 +4,8 @@ import { useState } from 'react';
 import CurrencyInput from 'react-currency-input-field';
 import { v4 as uuidv4 } from 'uuid';
 
-import Alert from './alert'
+import Alert from '../alert'
+import addNewProduct from '../../utils/addNewProduct'
 
 export default function AddProducts({showProducts,setShowProducts}) {
   const {
@@ -22,46 +23,12 @@ export default function AddProducts({showProducts,setShowProducts}) {
 
   
 
-  const onSubmit = async (productData) => {
-  const id = uuidv4();
-  //console.log({ id, ...productData });
-
-  try {
-    const response = await fetch('/api/new-product', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({id, ...productData}),
-    });
-
-    if (response.ok) {
-      // Product added successfully
-      // Reset the form fields
-      reset();
-      // Reset the price input manually
-      setPriceValue('');
-      // Show a confirmation message to the user
-      alert('Producto agregado con exito!');
-    } else {
-      // Error occurred while adding product
-      console.error('Error al agregar producto:', response.statusText);
-      // Show an error message to the user
-      alert('No se pudo agregar el producto. Por favor intente otra vez.');
-    }
-  } catch (error) {
-    // Exception occurred while making the API call
-    console.error('Error al agregar producto:', error);
-    // Show an error message to the user
-    alert('No se pudo agregar el producto. Por favor intente otra vez.');
-  }
-};
 
 
   return (
     <div className="flex place-content-center relative bg-white px-4 pt-5 pb-4 shadow-xl ring-1 ring-gray-900/5">
       
-      <form onSubmit={handleSubmit(onSubmit)} className="form-control w-full max-w-xs mr-5 ml-5">
+      <form onSubmit={handleSubmit((data) => addNewProduct(data, reset, setPriceValue))} className="form-control w-full max-w-xs mr-5 ml-5">
         <label className="label" htmlFor="description">Descripción</label>
         <input
           className="input input-bordered w-full max-w-xs"
@@ -126,27 +93,6 @@ export default function AddProducts({showProducts,setShowProducts}) {
         />
         {errors.price && <Alert message="Agregue un precio" />}
 
-        <label className="label" htmlFor="image">URL de la imagen</label>
-        <input
-          className="input input-bordered w-full max-w-xs"
-          type="text"
-          id="image"
-          {...register("image", { onChange: (e)=> (e.target.value = e.target.value.toLowerCase()) })}
-          placeholder="www.imagen.com"
-        />
-
-        {/*
-        <label className="label" htmlFor="image">
-          Imagen
-        </label>
-        <input
-          className="input input-bordered w-full max-w-xs"
-          type="file"
-          id="image"
-          {...register('image')}
-        />
-        
-        */}
 
         <button className="btn btn-secondary mt-3">Enviar</button>
         <div className="flex justify-center mt-6">

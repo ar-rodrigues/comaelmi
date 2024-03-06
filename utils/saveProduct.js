@@ -1,4 +1,9 @@
 const saveProduct = async (productId, updateData, setEdit, setError)=>{
+
+  typeof updateData.price === "string" ? 
+    updateData.price = parseFloat(updateData.price.replace("MX$", "")) :
+    updateData.price
+  
     try {
       //console.log(productId)
       const response = await fetch(`/api/update?id=${productId}`, {

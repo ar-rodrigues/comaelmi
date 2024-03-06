@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { v4 as uuidv4 } from 'uuid';
+import useSWR from 'swr';
 
 import Layout from '../components/layout';
-import AddProduct from '../components/addProduct';
-import Product from '../components/product';
-import ListOfProducts from '../components/listOfProducts';
-import ShopCart from '../components/ui-user/shopCart'
-import { v4 as uuidv4 } from 'uuid';
-import deleteProduct from '../utils/deleteProduct'
 
 
 
-import useSWR, {mutate} from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -22,7 +17,7 @@ export default function Index() {
   const [error, setError] = useState(false)
   const [cartList, setCartList] = useState([])
   const [showCartList, setShowCartList] = useState(false);
-  const [orderData, setOrderData] = useState({id: id, name: "Hospital", date: "", observation:"" , cartList: cartList})
+  const [orderData, setOrderData] = useState({id: id, name: "Cliente", date: "", observation:"" , cartList: cartList})
 
 
   
@@ -56,8 +51,8 @@ export default function Index() {
         
 
         <button className="btn btn-wide">
-          <Link href="/hospital/sur">
-            Interface Hospital
+          <Link href="/cliente/sur">
+            Interface Ordenes
           </Link>
         </button >
         

@@ -17,10 +17,10 @@ export default function Header({userName}) {
           <Link className="bg-gray-200 text-gray-700 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded-md py-2 px-4" href="/admin">
             Admin
           </Link>
-          <Link className="bg-gray-200 text-gray-700 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded-md py-2 px-4" href="/hospital/norte">
-            Hospital
+          <Link className="bg-gray-200 text-gray-700 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded-md py-2 px-4" href="/cliente/norte">
+            Ordenar
           </Link>
-          <Link className="bg-gray-200 text-gray-700 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded-md py-2 px-4" href="/admin/pedidos">
+          <Link className="bg-gray-200 text-gray-700 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 rounded-md py-2 px-4" href="/matrix">
             Pedidos
           </Link>
           
